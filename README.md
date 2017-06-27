@@ -3,8 +3,9 @@
 Simple role to set up a wireguard server  
 
 ## Role Variables
-    wireguard_root_ip: 10.212.122.1 #VPN address of server  
-    wireguard_clients: [] #List of clients to add to wireguard config  
+    wireguard_root_ip: 10.212.122.1 # VPN address of server  
+    wireguard_clients: [] # List of clients to add to wireguard config  
+    wireguard_private_key: "..." # Undefined by default, the role will generate a key on each run
 
 
 ## Example Playbook
@@ -17,8 +18,6 @@ Simple role to set up a wireguard server
           - { public_key: '...', allowed_ip: '10.212.122.20/32', preshared_key: '....' }
       roles:
         - { role: botto.wireguard }
-
-You will want to generate the server private key(`wireguard_private_key`) and set the var, otherwise it will generate a private key each run and overwrite the previous one.  
 
 ## TODO
 - [ ] Inspect existing server config and extract private key  
