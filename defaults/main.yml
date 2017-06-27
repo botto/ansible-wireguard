@@ -1,0 +1,8 @@
+---
+wireguard_listen_port: "51820"
+
+wireguard_path: "/etc/wireguard"
+wireguard_public_key_file:  "{{ wireguard_path }}/server.pub"
+
+wireguard_clients: []
+wireguard_root_ip: '10.212.122.1'

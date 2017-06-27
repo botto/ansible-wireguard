@@ -1,0 +1,13 @@
+[Interface]
+Address = {{ wireguard_root_ip}}
+SaveConfig = {{ wireguard_save_config }}
+ListenPort = {{ wireguard_listen_port }}
+PrivateKey = {{ wireguard_private_key }}
+
+{% for peer in wireguard_clients %}
+[Peer]
+PublicKey = {{ peer.public_key }}
+AllowedIPs = {{ peer.allowed_ip }}
+PresharedKey = {{ peer.preshared_key }}
+{% endfor %}
+

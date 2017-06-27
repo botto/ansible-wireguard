@@ -1,0 +1,34 @@
+---
+- name: Add the WireGuard PPA
+  apt_repository:
+    repo: 'ppa:wireguard/wireguard'
+    update_cache: yes
+
+- name: Install the WireGuard packages
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - wireguard-dkms
+    - wireguard-tools
+
+- include: './private_key.yml'
+- include: './public_key.yml'
+
+- name: Generate the client and server configuration files
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ wireguard_path }}/{{ item }}"
+    owner: root
+    group: root
+    mode: 0600
+  with_items:
+    - wg0-server.conf
+  notify: 'restart wireguard'
+
+- name: Enable the WireGuard service so it starts at boot, and bring up the WireGuard network interface
+  systemd:
+    name: wg-quick@wg0-server.service
+    enabled: yes
+    state: started
+  when: wireguard_clients.0 is defined
+
