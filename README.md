@@ -22,8 +22,5 @@ wiregurd_users:
 ```
 
 ## TODO
-
-Next working items
-
-[] Inspect existing server config and extract private key  
-[] Make sure multiple wg instances can be set up i.e.: wg0-server and wg1-server and so on  
+- [ ] Inspect existing server config and extract private key  
+- [ ] Make sure multiple wg instances can be set up i.e.: wg0-server and wg1-server and so on  
