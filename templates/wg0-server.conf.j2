@@ -8,10 +8,10 @@ PrivateKey = {{ wireguard_private_key }}
 [Peer]
 PublicKey = {{ peer.public_key }}
 AllowedIPs = {{ peer.allowed_ip }}
-{% if peer.preshared_key %}
+{% if 'preshared_key' in peer %}
 PresharedKey = {{ peer.preshared_key }}
 {% endif %}
-{% if peer.endpoint %}
+{% if 'endpoint' in peer %}
 Endpoint={{ peer.endpoint }}
 PersistentKeepalive=10
 {% endif %}
