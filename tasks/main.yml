@@ -1,4 +1,7 @@
 ---
+- name: Install kernel headers matching kernel version
+  shell: "apt -y install linux-headers-$(uname -r)"
+
 - name: Add the WireGuard PPA
   apt_repository:
     repo: 'ppa:wireguard/wireguard'
