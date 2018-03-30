@@ -8,6 +8,8 @@ PrivateKey = {{ wireguard_private_key }}
 [Peer]
 PublicKey = {{ peer.public_key }}
 AllowedIPs = {{ peer.allowed_ip }}
+{% if peer.preshared_key %}
 PresharedKey = {{ peer.preshared_key }}
+{% endif %}
 {% endfor %}
 
