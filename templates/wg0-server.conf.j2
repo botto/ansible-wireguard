@@ -11,5 +11,8 @@ AllowedIPs = {{ peer.allowed_ip }}
 {% if peer.preshared_key %}
 PresharedKey = {{ peer.preshared_key }}
 {% endif %}
+{% if peer.endpoint %}
+Endpoint={{ peer.endpoint }}
+PersistentKeepalive=10
+{% endif %}
 {% endfor %}
-
