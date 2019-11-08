@@ -13,7 +13,7 @@ Simple role to set up a wireguard server
     - hosts: webservers
       vars:
         wireguard_private_key: "..."
-        wiregurd_clients:
+        wireguard_clients:
           - { public_key: 'fMVHmYgYIl8w6dPnbspiNcXjxNcsYmNUL5hBHbkzEng=', allowed_ip: '10.212.122.10/32', preshared_key: 'pEoSSHnrbk94CJepW8+GGGUThgiJwJHdUszPN/30Xks=' }
           - { public_key: '...', allowed_ip: '10.212.122.20/32', preshared_key: '....' }
       roles:
