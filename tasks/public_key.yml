@@ -1,11 +1,11 @@
 ---
-  - name: Generate public key
-    shell: 'echo "{{ wireguard_private_key }}" | wg pubkey'
-    register: wireguard_public_key
-    when: wireguard_public_key is not defined or wireguard_public_key == ""
+- name: Generate public key
+  ansible.builtin.shell: 'echo "{{ wireguard_private_key }}" | wg pubkey'
+  register: wireguard_public_key
+  when: wireguard_public_key is not defined or wireguard_public_key|length == 0
 
-  - name: Save public key
-    copy:
-      content: "{{ wireguard_public_key.stdout }}"
-      dest: "{{ wireguard_public_key_file }}"
-    when: wireguard_public_key is defined and wireguard_public_key != ""
+- name: Save public key
+  ansible.builtin.copy:
+    content: "{{ wireguard_public_key.stdout }}"
+    dest: "{{ wireguard_public_key_file }}"
+  when: wireguard_public_key is defined and wireguard_public_key|length == 0
