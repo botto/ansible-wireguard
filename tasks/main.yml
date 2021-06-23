@@ -1,11 +1,9 @@
 ---
-- name: Add the WireGuard PPA
-  apt_repository:
-    repo: 'ppa:wireguard/wireguard'
-    update_cache: yes
+- name: Install kernel headers matching kernel version
+  ansible.builtin.shell: "apt -y install linux-headers-$(uname -r)"
 
 - name: Install the WireGuard packages
-  apt:
+  ansible.builtin.package:
     name: "{{ item }}"
   with_items:
     - wireguard-dkms
@@ -15,7 +13,7 @@
 - include: './public_key.yml'
 
 - name: Generate the client and server configuration files
-  template:
+  ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "{{ wireguard_path }}/{{ item }}"
     owner: root
@@ -26,7 +24,7 @@
   notify: 'restart wireguard'
 
 - name: Enable the WireGuard service so it starts at boot, and bring up the WireGuard network interface
-  systemd:
+  ansible.builtin.systemd:
     name: wg-quick@wg0-server.service
     enabled: yes
     state: started

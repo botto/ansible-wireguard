@@ -2,7 +2,7 @@ galaxy_info:
   author: Martin Eskdale Moen 
   description: Provides a basic wireguard role for ubuntu based systems
   license: MIT
-  min_ansible_version: 1.2
+  min_ansible_version: 2.9
   platforms:
     - name: Ubuntu
       versions:
